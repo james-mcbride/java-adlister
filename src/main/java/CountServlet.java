@@ -3,20 +3,23 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello-world")
-public class HelloWorldServlet extends HttpServlet {
-
+@WebServlet(name = "Count", urlPatterns = "/count")
+public class CountServlet extends HttpServlet {
+    int counter=0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userName = request.getParameter("name");
+        String input = request.getParameter("input");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        if (userName!= null) {
-            out.println("<h1>Hello " + userName + "!</h1>");
+        System.out.println(input);
+        if (input !=null) {
+            counter=0;
         } else{
-            out.println("<h1>Hello World!</h1>");
-
+            counter++;
         }
-    }
+        out.println("At present the value of the counter is " + counter);
 
+
+    }
 }
+

@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%request.setAttribute("username", request.getParameter("username")); %>
+<%request.setAttribute("password", request.getParameter("password")); %>
 
 <html>
 <head>
@@ -14,11 +16,19 @@
 </head>
 <body>
 <h1>Login Page</h1>
-<p>Path: <%= request.getRequestURL() %></p>
-<p>Query String: <%= request.getQueryString() %></p>
-<p>"name" parameter: <%= request.getParameter("name") %></p>
-<p>"method" attribute: <%= request.getMethod() %></p>
-<p>User-Agent header: <%= request.getHeader("user-agent") %></p>
+
+<%--<c:if test="${username.equalsIgnoreCase(\"admin\") && username.equalsIgnoreCase(\"password\")}">--%>
+<%--    <p>Welcome admin</p>--%>
+<%--    <% response.sendRedirect("/profile.jsp"); %>--%>
+<%--</c:if>--%>
+
+
+
+<%--<p>Response: <%= response.getOutputStream() %></p>--%>
+
+<%--<p>Response: <%= ${par}%></p>--%>
+
+
 <form method="POST" action="/login.jsp">
 
     <label for="username">Username</label>
@@ -31,6 +41,18 @@
 
     <input type="submit">
 </form>
+<c:choose>
+    <c:when test="${username.equalsIgnoreCase(\"admin\") && password.equalsIgnoreCase(\"password\")}">
+        <p>Welcome admin</p>
+        <% response.sendRedirect("/profile.jsp"); %>
+    </c:when>
+
+    <c:otherwise>
+        <p>Please submit admin info.</p>
+    </c:otherwise>
+</c:choose>
+<p>${username}</p>
+<p>${password}</p>
 
 </body>
 </html>

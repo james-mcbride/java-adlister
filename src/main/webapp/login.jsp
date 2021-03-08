@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%request.setAttribute("username", request.getParameter("username")); %>
 <%request.setAttribute("password", request.getParameter("password")); %>
-
 <html>
 <head>
     <title>Title</title>

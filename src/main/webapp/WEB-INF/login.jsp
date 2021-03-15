@@ -20,6 +20,7 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
+        <div>${sessionScope.invalidLogin}</div>
     </div>
 </body>
 </html>
